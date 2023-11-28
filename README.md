@@ -76,12 +76,12 @@ django-chat
 + 2023.11.21 ~ 2023.11.30
 
 # 4. 페이지 화면
-4.1 Main & 채팅
+## 4.1 Main & 채팅
 |Main|채팅|
 |:---:|:---:|
 |![메인](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/ba7de45b-ccb5-4863-aa62-da6104859737)|![채팅화면](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/4490752d-cabb-4a67-96c5-f661b3cfdd26)|
 
-4.2 User 계정
+## 4.2 User 계정
 |로그인|회원가입|
 |:---:|:---:|
 |![로그인](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/e49e6296-c50e-4b5f-ab82-01423646f812)|![회원가입](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/c6ad537e-d750-4cac-8695-9129bfab0e8b)|
@@ -89,7 +89,7 @@ django-chat
 
 
 # 5. 기능
-5.1 URL 리스트
+## 5.1 URL 리스트
 |URL|기능|
 |:---|:---|
 |'list'|채팅창 목록|
@@ -98,8 +98,9 @@ django-chat
 |'/account/login'|로그인|
 |'/account/logout'|로그아웃|
 
-5.2 세부 기능
+## 5.2 세부 기능
 + 회원가입
+![회원가입](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/7f9cac6f-b31f-406b-9e80-a0d7da9bc500)
 
 ```
 document.getElementById("register-form").addEventListener("submit", function (e) {
@@ -136,7 +137,7 @@ document.getElementById("register-form").addEventListener("submit", function (e)
 
 |로그인|로그아웃|
 |:---:|:---:|
-|||
+|![로그인](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/b3925711-22fc-4ba1-b14a-5dfed670bfe3)|![로그아웃](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/b8b63e7e-4089-4c86-9507-cf8987174c95)|
 
 ```
 function checkToken() {
@@ -165,7 +166,7 @@ function checkToken() {
 
 |로그인|로그아웃|
 |:---:|:---:|
-|||
+|![로그인_네비게이션바](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/1d4c02ff-ff37-44be-9635-19a5193810cb)|![로그아웃_네비게이션바](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/77cafab3-47f5-46f2-a1d9-274f0622e02f)|
 
 ```
 const loginToken = getCookie("loginToken");
@@ -194,11 +195,21 @@ if (loginToken) {
 
 
 + 채팅방 목록
+  
+|로그인 전|로그인 후|
+|:---:|:---:|
+|![채팅방목록_로그인전](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/2d436ee7-ef9d-442d-a860-d960560b2c5d)|![채팅방목록_로그인후](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/ff4dca9a-2dc0-4a15-95d0-965e17587b59)|
 
 로그인이 성공적으로 이루어지면 메인화면으로 연결된다. 로그인된 상태에서는 메인화면에 해당 유저가 생성한 채팅방 목록이 출력되며, 클릭하여 해당 채팅방으로 이동할 수 있다.
 로그인되지 않은 상태에서는 채팅방 목록이 출력되지 않는다.
 
 + 채팅
+  
+|불러오기|채팅|
+|:---:|:---:|
+|![채팅불러오기](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/a4f449b7-5a0b-4fa7-8801-af8b71a53b01)|![채팅_채팅](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/58ea9bb1-f4c6-4a1d-bd0e-25407e976075)|
+
+
 
 ```
 function loadChat() {
@@ -251,6 +262,31 @@ function askQuestion() {
 채팅을 입력하고 제출하면 해당 element의 value를 post로 서버에 전달한다. 이때 제출 후 답변이 출력되기 전까지 switchLoad() 함수를 통해 loading modal을 화면에 출력한다.
 
 # 6. 향후 개선 사항
+## 6.1 코드 에러
++ 채팅화면 CSS
 
+  채팅 화면은 HTML, CSS, JavaScript를 이용한 지난 프로젝트를 활용하였다. 이때 bootstrap을 적용하지 않고 순수 CSS로 제작하였기 때문에 이번 프로젝트에서 bootstrap을 적용했을 때 여러 오차가 발생하였다. 그 중 채팅 화면에  서 네비게이션 바를 적용을 못한 문제와 채팅 입력창의 가운데 정렬이 안 맞는 문제가 있었습니다.
 
+## 6.2 코드 개선
++ DB 중복 요청
+
+  브라우저에서 GET으로 채팅화면을 불러오는 요청을 하면, 서버에서는 DB로 해당 채팅방에 속하는 모든 메시지를 가져온다. 이때 채팅 화면을 새로고침하게 될 경우, 매번 서버에서 DB 요청을 하게 된다. 쿠키를 통해서 새로운 채팅방으로의 이동인지, 현재 채팅방에서의 새로고침인지를 확인할 수 있는 방법이 필요하다.
+
++ JavaScript 파일 구조
+
+  현재 각 HTML 페이지 별로 개별 js 파일이 연결되여 작동되고 있다. 따라서 getToken과 같은 함수들이 중복되어 선언된다. DOM build, function Modul과 같이 기능을 기준으로 구분하는 새로운 파일 구조화 작업이 필요하다.
+
+## 6.3 추가 기능 구현
++ 채팅방 추가 및 삭제
+
+  메인 화면에 출력되는 채팅방 목록 중 일부 채팅방을 삭제하거나 새로 만드는 기능이 구현되어 있지 않다. 기존 채팅방을 불러오는 기능 이외에도 생성, 삭제, 이름 수정과 같은 기능의 구현이 필요하다.
+  
++ OAuth 2.0
+
+  본 프로젝트에서는 유저 인증 과정에서 django rest_framework의 authentication 기능을 사용하였다. OAuth 2.0과 같은 외부 프로토콜을 사용한다면 제 3자 서비스로부터의 소셜 로그인 기능을 구현할 수 있을 것이다.
+  
 # 7. 개발 과정에서 느낀 점
+
+각 페이지에서 정보를 어떤 방법으로 서버와 주고 받을 지에 대한 고민을 할때 가장 어려웠다. 기능 구현에 중점을 두고 프로젝트를 진행했어서 현재 확장성과 효율 부분에서 다소 아쉬웠다. 특히 내장된 기능을 충분히 활용하지 못한 점과 보안상 취약한 부분이 많다는 점이 느껴졌다.
+
+이번 프로젝트에서 Django Rest Framework의 기본 구조를 이해할 수 있었다. 아쉬운 부분이 있는 만큼 앞으로 보안과 확장성 부분을 더 공부해야 된다는 걸 깨닫고 다음 공부는 이 부분들을 중점으로 계획을 수립하고 있다.
