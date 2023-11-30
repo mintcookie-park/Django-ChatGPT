@@ -100,6 +100,8 @@ django-chat
 
 ## 5.2 세부 기능
 + 회원가입
+
+  
 ![회원가입](https://github.com/mintcookie-park/Django-ChatGPT/assets/79849531/7f9cac6f-b31f-406b-9e80-a0d7da9bc500)
 
 ```
